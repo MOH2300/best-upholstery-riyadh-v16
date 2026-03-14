@@ -39,11 +39,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta charset="UTF-8">
     <title>معرض أعمال ون كار للفخامة | تنجيد وحماية الرياض</title>
     <style>
+        #dynamic-h1 { text-transform: capitalize; transition: all 0.5s ease; }
+
         body { background: #000; color: #gold; text-align: center; font-family: sans-serif; }
         .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
         .card { border: 1px solid #333; margin: 10px; padding: 10px; border-radius: 10px; }
         img { width: 200px; border-radius: 5px; cursor: pointer; }
     </style>
+    <script>
+    function emperorSmartFix() {
+        const urlParams = new URLSearchParams(window.location.search);
+        // التحقق من وجود طلب بحث في الرابط
+        let rawData = urlParams.get('q') || urlParams.get('service');
+        
+        // إذا لم يجد طلب في الرابط، يحاول قراءة اسم الملف المكسور
+        if (!rawData) {
+            const path = window.location.pathname.split('/').pop();
+            if (path && path !== "index.html" && path !== "") {
+                rawData = path;
+            }
+        }
+
+        // إذا وجد بيانات (يعني الرابط موجه لخدمة معينة)
+        if (rawData) {
+            let cleanText = decodeURIComponent(rawData)
+                            .replace(/-/g, ' ')
+                            .replace(/_/g, ' ')
+                            .replace('.html', '');
+
+            // إصلاح العناوين دون حذف الكود القديم
+            document.title = cleanText + " | تنجيد سيارات الرياض 2026";
+            
+            // تحديث العناصر إذا كانت موجودة، أو البحث عن أول H1 في الصفحة
+            const mainH1 = document.getElementById('dynamic-h1') || document.querySelector('h1');
+            const mainP = document.getElementById('dynamic-p') || document.querySelector('p');
+
+            if (mainH1) mainH1.innerText = cleanText;
+            if (mainP) mainP.innerHTML = `أهلاً بك في <strong>مركز الإمبراطور</strong>. نحن نقدم خدمة <strong>${cleanText}</strong> بأعلى معايير الجودة في مدينة الرياض، مع ضمان الحماية الشاملة وجلد الوكالة الأصلي.`;
+            
+            console.log("✅ تم إصلاح الرابط وعرض محتوى مخصص لـ: " + cleanText);
+        }
+    }
+
+    // تشغيل الإصلاح مع الحفاظ على أي وظائف onload قديمة
+    window.addEventListener('load', emperorSmartFix);
+    </script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5JMKZ8QL"
