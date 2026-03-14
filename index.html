@@ -1,7 +1,37 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script>
+        // سكريبت الإمبراطور لاستقبال وتحليل الروابط المليونية
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    // جلب النص من الرابط (مثلاً: ?service=تنجيد-لكزس)
+    let serviceText = urlParams.get('q') || urlParams.get('service');
+
+    if (serviceText) {
+        // تنظيف النص من الشرطات وتحويله لكلام مفهوم
+        let cleanTitle = serviceText.replace(/-/g, ' ');
+        
+        // تحديث عنوان الصفحة (Title) لكي يراه جوجل
+        document.title = cleanTitle + " | المتخصص للتنجيد الرياض";
+        
+        // تحديث العنوان الرئيسي في الصفحة (H1)
+        if(document.getElementById('main-title')) {
+            document.getElementById('main-title').innerText = cleanTitle;
+        }
+
+        // إضافة نص SEO ديناميكي
+        if(document.getElementById('dynamic-content')) {
+            document.getElementById('dynamic-content').innerHTML = `
+                <p>أهلاً بكم في فرعنا المخصص لخدمة <strong>${cleanTitle}</strong>. 
+                نحن نوفر أفضل خامات الجلد الألماني والوكالة في جميع أحياء الرياض، 
+                بما في ذلك حي ثادق وكافة المناطق المحيطة بضمان حقيقي.</p>
+            `;
+        }
+    }
+}
+
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
