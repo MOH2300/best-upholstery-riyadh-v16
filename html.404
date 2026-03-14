@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أفضل خدمات تنجيد وحماية السيارات بالرياض</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --black: #1a1a1a;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container { padding: 50px 20px; }
+        .hero-box {
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        h1 { color: var(--gold); font-size: 2.5em; margin-bottom: 10px; }
+        .dynamic-keyword { color: var(--white); text-decoration: underline; }
+        .cta-button {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .cta-button:hover { transform: scale(1.1); box-shadow: 0 0 20px rgba(37, 211, 102, 0.5); }
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .service-item {
+            background: #333;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="hero-box">
+        <i class="fas fa-car-side fa-3x" style="color: var(--gold);"></i>
+        <h1 id="main-title">جاري تحضير العرض...</h1>
+        <p id="sub-title" style="font-size: 1.3em;">نحن متخصصون في أرقى خدمات زينة وتنجيد السيارات في الرياض.</p>
+        
+        <a href="https://wa.me/966XXXXXXXXX" class="cta-button">
+            <i class="fab fa-whatsapp"></i> احجز موعدك الآن
+        </a>
+    </div>
+
+    <div class="services-list" id="services-grid">
+        </div>
+</div>
+
+<script>
+    // وظيفة استخراج الكلمات من الرابط
+    function getKeywordsFromURL() {
+        const path = window.location.pathname;
+        const slug = path.split('/').pop().replace('.html', '');
+        // تحويل الشخطات إلى مسافات
+        const keywords = slug.split('-').join(' ');
+        return keywords || "تنجيد وحماية السيارات بالرياض";
+    }
+
+    // تحديث المحتوى بناءً على الرابط
+    window.onload = function() {
+        const decodedText = decodeURIComponent(getKeywordsFromURL());
+        
+        // تغيير العنوان الرئيسي ليتناسب مع ما بحث عنه المستخدم
+        document.getElementById('main-title').innerText = decodedText;
+        
+        // إضافة لمسة احترافية للوصف
+        document.getElementById('sub-title').innerHTML = `أفضل مركز متخصص لخدمة <span class="dynamic-keyword">${decodedText}</span> بأعلى معايير الجودة في مدينة الرياض.`;
+
+        // إضافة خدمات إضافية لزيادة الكثافة المفتاحية
+        const extraServices = ["تنجيد وكالة", "نانو سيراميك", "عازل حراري", "حماية PPF", "تلميع ساطع"];
+        const grid = document.getElementById('services-grid');
+        extraServices.forEach(s => {
+            let div = document.createElement('div');
+            div.className = 'service-item';
+            div.innerText = s;
+            grid.appendChild(div);
+        });
+    };
+</script>
+
+</body>
+</html>
